@@ -11,8 +11,8 @@ const LoginForm = (props) => (
     <form action="/" onSubmit={props.onSubmit}>
       <h2 className="card-heading">Login</h2>
 
-      {props.successMessage && <p className="success-message">{props.successMessage}</p>}
-      {props.errorsMessage && <p className="error-message">{props.errorsMessage}</p>}
+      {/* {props.successMessage && <p className="success-message">{props.successMessage}</p>}*/}
+      {props.errors.message && <p className="error-message">{props.errors.message}</p>}
 
       <div className="field-line">
         <TextField

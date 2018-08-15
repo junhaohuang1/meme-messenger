@@ -49,7 +49,7 @@ export function authentication(state = initialState, action) {
         ...state,
         loggingIn: false,
         loggedIn: false,
-        errors: action.payload.response.data
+        errors: action.payload.response.data.errors
       };
     case "USERS_LOGOUT":
       return {

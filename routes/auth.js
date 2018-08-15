@@ -87,14 +87,16 @@ router.post('/signup', (req, res, next) => {
   }
   return passport.authenticate('local-signup', (err) => {
     if (err) {
-      if (err.message = 'That email is already taken') {
+      console.log(err);
+      if (err.name === 'DuplicateEmail') {
         // the 11000 Mongo code is for a duplication email error
         // the 409 HTTP status code is for conflict error
+        console.log("duplicate email");
         return res.status(409).json({
           success: false,
-          message: 'Check the form for errors.',
           errors: {
-            email: 'This email is already taken.'
+            email: 'This email is already taken.',
+            message: 'Check the form for errors.'
           }
         });
       }
@@ -123,19 +125,25 @@ router.post('/login', (req, res, next) => {
   }
 
 
-  return passport.authenticate("local-signin", (err, token, userData, dbUser) => {
+  return passport.authenticate("local-signin", (err, token, userData) => {
     if (err) {
       console.log("authenticate failed");
       if (err.name === 'IncorrectCredentialsError') {
+        console.log('True');
+        console.log(err.message);
         return res.status(400).json({
           success: false,
-          message: err.message
+          errors: {
+            message: err.message
+          }
         });
       }
 
       return res.status(400).json({
         success: false,
-        message: 'Could not process the form.'
+        errors: {
+          message: 'Could not process the form.'
+        }
       });
     }
 

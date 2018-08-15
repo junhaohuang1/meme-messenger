@@ -17,7 +17,10 @@ passport.use('local-signup', new LocalStrategy({
     db.User.findOne({where: {email:email}}).then(function(user){
       if(user)
       {
-        return done(null, false, {message : 'That email is already taken'} );
+        console.log('found existing user');
+        const error = new Error('That email is already taken');
+        error.name = 'DuplicateEmail';
+        return done(error);
       } else {
         db.User.create({
           name: req.body.name.trim(),
