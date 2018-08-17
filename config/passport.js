@@ -76,7 +76,8 @@ passport.use('local-signin', new LocalStrategy({
       // create a token string
       const token = jwt.sign(payload, jwtSecret);
       const data = {
-        name: dbUser.name
+        name: dbUser.name,
+        id: dbUser.id
       };
       return done(null, token, data, dbUser);
     });

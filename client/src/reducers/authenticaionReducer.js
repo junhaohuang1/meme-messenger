@@ -39,6 +39,7 @@ export function authentication(state = initialState, action) {
         loggingIn: false,
         userData: action.payload.data.user.userData,
         username: action.payload.data.user.userData.name,
+        id: action.payload.data.user.userData.id,
         errors:{},
         email: '',
         password: ''
