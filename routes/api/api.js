@@ -1,4 +1,6 @@
 const express = require('express');
+var db = require("../../models");
+const url = require('url');
 
 const router = new express.Router();
 
@@ -8,5 +10,56 @@ router.get('/dashboard', (req, res) => {
     message:"we are at our dashboard"
   });
 });
+
+
+
+router.get('/findfriend', (req, res) => {
+  db.User.findOne({
+    where:{
+      email:req.body.email
+    }
+  }).then(function(dbUser){
+      if (!dbUser) {
+        return res.redirect(url.format({
+          pathname:'/api/friendsearchresult',
+          query:{
+            "success": false,
+            "errorMessage": 'user not found'
+            }
+          }));
+        // return res.status(401).json({
+        //   success:false,
+        //   errors:{
+        //     message:"user not found"
+        //   }
+        // });
+      }
+      return res.redirect(url.format({
+        pathname:'/api/friendsearchresult',
+        query:{
+          "success": true,
+          "userId": dbUser.id,
+          "username": dbUser.name,
+          "email": dbUser.email
+          }
+        }));
+        // return res.json({
+        //   success: true,
+        //   result:{
+        //     userId: dbUser.id,
+        //     username: dbUser.name,
+        //     email: dbUser.email
+        //     }
+        // })
+    })
+});
+
+router.get('/friendsearchresult', (req, res) => {
+  if(!req.query.success){
+    console.log('hi');
+
+  }
+});
+
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React from 'react';
 import NavBarForm from '../components/NavBarForm.js';
+import FriendSearchBar from './FriendSearchBar.js';
 import NavBarModal from './Modal.js'
 import { userActions, modalActions } from '../actions';
 import { connect } from 'react-redux';
@@ -24,6 +25,7 @@ class NavBar extends React.Component{
           loggedIn={this.props.loggedIn}
           openModal={this.openModal}
           modalButton = {this.props.loggedIn ? <NavBarModal/> : null}
+          friendSearchButton = {this.props.loggedIn ? <FriendSearchBar/> : null}
           />
 
         </div>

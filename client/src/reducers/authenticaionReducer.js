@@ -4,6 +4,7 @@ let user = Auth.checkUserLoggedIn();
 const initialState = user ? ({
   loggedIn: true,
   username: user.name,
+  id: user.id,
   errors:{},
   successMessage:"",
   email: '',

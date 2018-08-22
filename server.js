@@ -68,7 +68,7 @@ const authCheckMiddleware = (req, res, next) => {
     // check if a user exists
     return db.User.findOne({
       where: {
-        userId: userId
+        id: userId
       }
     }).then(function(dbUser) {
         if (!dbUser) {

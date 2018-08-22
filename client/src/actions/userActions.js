@@ -1,6 +1,13 @@
 import axios from 'axios';
 import Auth from '../Auth.js'
 
+const updateSignUpForm = (key, value) => (dispatch) => (
+  dispatch({
+      type: "SIGNUP_FORM_UPDATE_VALUE_FULFILLED",
+      key, value
+  })
+)
+
 const updateSignInForm = (key, value) => (dispatch) => (
   dispatch({
       type: "SIGNIN_FORM_UPDATE_VALUE_FULFILLED",
@@ -8,9 +15,9 @@ const updateSignInForm = (key, value) => (dispatch) => (
   })
 )
 
-const updateSignUPForm = (key, value) => (dispatch) => (
+const updateFriendQuery = (key, value) => (dispatch) => (
   dispatch({
-      type: "SIGNUP_FORM_UPDATE_VALUE_FULFILLED",
+      type: "FRIEND_QUERY_UPDATE_VALUE_FULFILLED",
       key, value
   })
 )
@@ -25,6 +32,17 @@ const login = (email,password) => (dispatch) => (
     })
   })
 );
+
+const searchFriend = (email) => (dispatch) => (
+  dispatch({
+    type: "FRIEND_SEARCH",
+    payload: axios.get('/api/findfriend', {
+      email: email,
+    })
+  })
+);
+
+
 
 function logout() {
     Auth.deauthenticateUser();
@@ -48,6 +66,8 @@ export const userActions = {
     login,
     logout,
     signup,
+    searchFriend,
     updateSignInForm,
-    updateSignUPForm
+    updateSignUpForm,
+    updateFriendQuery
 };
