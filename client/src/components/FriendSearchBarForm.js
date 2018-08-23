@@ -7,10 +7,11 @@ import TextField from 'material-ui/TextField';
 
 
 const FriendSearchBarForm = (props) => (
-  <Card className="container" style = {{display:'flex'}}>
-    <form action="#" onSubmit={props.onSubmit}>
-      <div className="field-line" style = {{flex:1}}>
+  <Card className="container">
+    <form action="#" onSubmit={props.onSubmit} style = {{display:'flex', height: 63, width:500}}>
+      <div className="field-line" style = {{flex:1, height: 62}}>
         <TextField
+          style={{height: 62}}
           floatingLabelText="Search Friend Here By Email"
           name="email"
           onChange={props.onChange}
@@ -19,7 +20,7 @@ const FriendSearchBarForm = (props) => (
       </div>
 
       {/* <div className="button-line">*/}
-      <RaisedButton style = {{flex:1}} type="submit" label="Search Friend" primary />
+      <RaisedButton style = {{flex:1,height: 63}} type="submit" label="Search Friend" primary />
       {/*</div>*/}
 
     </form>

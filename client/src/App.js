@@ -27,7 +27,6 @@ const App = (props) => {
         <ConnectedSwitch>
           <Route exact path = '/' component = {HomePage}/>
           <Route path = '/signup' component = {SignUpPage}/>
-          <Route path = '/checkMeOut' component = {LoginPage}/>
           <Route path = '/login' component = {LoginPage}/>
           <Route path="/logout"  render={() => (<Redirect to="/"/>)}/>
         </ConnectedSwitch>
