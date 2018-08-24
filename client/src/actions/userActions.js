@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Auth from '../Auth.js'
 
+axios.defaults.headers.common['authorization'] = localStorage.getItem('user')
+
 const updateSignUpForm = (key, value) => (dispatch) => (
   dispatch({
       type: "SIGNUP_FORM_UPDATE_VALUE_FULFILLED",
@@ -33,7 +35,7 @@ const login = (email,password) => (dispatch) => (
   })
 );
 
-const searchFriend = (email) => (dispatch) => (
+const searchFriend = (email, token) => (dispatch) => (
   dispatch({
     type: "FRIEND_SEARCH",
     payload: axios.get('/api/findfriend', {

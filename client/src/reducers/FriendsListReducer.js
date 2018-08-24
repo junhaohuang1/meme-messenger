@@ -34,7 +34,7 @@ export function friendslist(state = initialState, action) {
         ...state,
         searching: false,
         searched: false,
-        errors: action.payload.response.data.errorMessage,
+        errors: action.payload.response.data.errors,
         successMessage:"",
       };
     default:

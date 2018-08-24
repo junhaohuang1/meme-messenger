@@ -8,7 +8,7 @@ const initialState = user ? ({
   errors:{},
   successMessage:"",
   email: '',
-  password: ''
+  password: '',
   }) :
 ({
   loggedIn: false,
@@ -16,7 +16,7 @@ const initialState = user ? ({
   errors:{},
   successMessage:"",
   email: '',
-  password: ''
+  password: '',
 });
 
 export function authentication(state = initialState, action) {
@@ -38,9 +38,8 @@ export function authentication(state = initialState, action) {
         ...state,
         loggedIn: true,
         loggingIn: false,
-        userData: action.payload.data.user.userData,
-        username: action.payload.data.user.userData.name,
-        id: action.payload.data.user.userData.id,
+        username: action.payload.data.user.name,
+        id: action.payload.data.user.id,
         errors:{},
         email: '',
         password: ''

@@ -125,7 +125,7 @@ router.post('/login', (req, res, next) => {
   }
 
 
-  return passport.authenticate("local-signin", (err, token, userData) => {
+  return passport.authenticate("local-signin", (err, token, data) => {
     if (err) {
       console.log("authenticate failed");
       if (err.name === 'IncorrectCredentialsError') {
@@ -152,8 +152,9 @@ router.post('/login', (req, res, next) => {
       success: true,
       message: 'You have successfully logged in!',
       user: {
-        userData:userData,
-        token:token,
+        id: data.id,
+        name:data.name,
+        token:token
       }
     });
   })(req, res, next);

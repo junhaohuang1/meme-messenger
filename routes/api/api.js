@@ -21,7 +21,8 @@ router.get('/findfriend', (req, res) => {
     }
   }).then(function(dbUser){
       if (!dbUser) {
-        return res.redirect(url.format({
+        console.log('couldnt find user');
+        return res.status(401).redirect(url.format({
           pathname:'/api/friendsearchresult',
           query:{
             "success": false,
@@ -35,7 +36,8 @@ router.get('/findfriend', (req, res) => {
         //   }
         // });
       }
-      return res.redirect(url.format({
+      console.log('found user');
+      return res.status(200).redirect(url.format({
         pathname:'/api/friendsearchresult',
         query:{
           "success": true,
