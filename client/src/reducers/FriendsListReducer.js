@@ -2,6 +2,10 @@ const initialState = {
   searching: false,
   searched: false,
   errorMessage:"",
+  email:"",
+  userSearchedId:"",
+  userSearchedName:"",
+  userSearchedEmail:"",
 }
 
 export function friendslist(state = initialState, action) {
@@ -27,7 +31,8 @@ export function friendslist(state = initialState, action) {
         userSearchedId:action.payload.data.userId,
         userSearchedName:action.payload.data.name,
         userSearchedEmail:action.payload.data.email,
-        errorMessage:""
+        errorMessage:"",
+        email:""
       };
     case "FRIEND_SEARCH_REJECTED":
       return {
@@ -36,6 +41,7 @@ export function friendslist(state = initialState, action) {
         searched: false,
         errors: action.payload.response.data.errors,
         successMessage:"",
+        email:""
       };
     default:
       return state

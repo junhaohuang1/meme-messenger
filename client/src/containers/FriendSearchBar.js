@@ -31,9 +31,10 @@ class FriendSearchBar extends React.Component {
 
     // create a string for an HTTP body message
     const email = this.props.email;
+    console.log(email);
     if (email) {
-      console.log("searching")
-      this.props.searchFriend(email);
+      console.log(email);
+      this.props.searchFriend(email, this.props.token);
     }
   }
 
@@ -76,13 +77,17 @@ function mapStateToProps(state) {
     errors: state.friendslist.errors,
     // successMessage: state.friendslist.successMessage,
     email: state.friendslist.email,
+    token: state.authentication.token,
+    userSearchedId:state.friendslist.userSearchedId,
+    userSearchedName:state.friendslist.userSearchedName,
+    userSearchedEmail:state.friendslist.userSearchedEmail,
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    searchFriend: (email) => {
-      dispatch(userActions.searchFriend(email))
+    searchFriend: (email, token) => {
+      dispatch(userActions.searchFriend(email, token))
     },
     updateFriendQuery:(key, value) =>{
       dispatch(userActions.updateFriendQuery(key, value))

@@ -14,7 +14,8 @@ router.get('/dashboard', (req, res) => {
 
 
 router.get('/findfriend', (req, res) => {
-  console.log("at findfriend api")
+  // console.log("at findfriend api");
+  console.log(req);
   db.User.findOne({
     where:{
       email:req.body.email

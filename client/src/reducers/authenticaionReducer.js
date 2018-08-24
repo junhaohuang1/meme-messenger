@@ -9,6 +9,7 @@ const initialState = user ? ({
   successMessage:"",
   email: '',
   password: '',
+  token:localStorage.getItem('user')
   }) :
 ({
   loggedIn: false,
@@ -17,6 +18,7 @@ const initialState = user ? ({
   successMessage:"",
   email: '',
   password: '',
+  token: ''
 });
 
 export function authentication(state = initialState, action) {
@@ -42,7 +44,8 @@ export function authentication(state = initialState, action) {
         id: action.payload.data.user.id,
         errors:{},
         email: '',
-        password: ''
+        password: '',
+        token:action.payload.data.user.token
       }
     );
     case "USERS_LOGIN_REJECTED":
@@ -55,7 +58,8 @@ export function authentication(state = initialState, action) {
     case "USERS_LOGOUT":
       return {
         ...state,
-        loggedIn: false
+        loggedIn: false,
+        token:""
       };
     default:
       return state
