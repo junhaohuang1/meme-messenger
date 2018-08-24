@@ -7,6 +7,7 @@ const jwtSecret = "a secret phrase!!"
 //
 //We will need the models folder to check passport agains
 var db = require("../models");
+console.log('rtest1');
 
 passport.use('local-signup', new LocalStrategy({
   usernameField: 'email',
