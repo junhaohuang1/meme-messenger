@@ -63,10 +63,13 @@ const authCheckMiddleware = (req, res, next) => {
   // const token = req.headers.authorization.split('"')[9];
   var token = "";
   if(req.headers.authorization.split('"')[9]){
+    console.log('can be split!')
     token = req.headers.authorization.split('"')[9]
+    // console.log(token);
+  } else {
+    token = req.headers.authorization;
   }
-  token = req.headers.authorization;
-  // console.log(token);
+  console.log(token);
   return jwt.verify(token, jwtSecret, (err, decoded) => {
     // the 401 code is for unauthorized status
     if (err) {

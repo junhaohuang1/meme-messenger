@@ -6,6 +6,7 @@ const initialState = {
   userSearchedId:"",
   userSearchedName:"",
   userSearchedEmail:"",
+  errors:""
 }
 
 export function friendslist(state = initialState, action) {
@@ -21,12 +22,11 @@ export function friendslist(state = initialState, action) {
         searching: true
       };
     case "FRIEND_SEARCH_FULFILLED":
-
       return {
         ...state,
         searching: false,
         searched: true,
-        successMessage: action.payload.data.sucess,
+        successMessage: action.payload.data.success,
         errors:{},
         userSearchedId:action.payload.data.userId,
         userSearchedName:action.payload.data.name,

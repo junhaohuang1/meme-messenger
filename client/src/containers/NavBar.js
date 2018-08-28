@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBarForm from '../components/NavBarForm.js';
 import FriendSearchBar from './FriendSearchBar.js';
-import NavBarModal from './Modal.js'
+import ImageUploadModal from './ImageUploadModal.js'
 import { userActions, modalActions } from '../actions';
 import { connect } from 'react-redux';
         //
@@ -24,7 +24,7 @@ class NavBar extends React.Component{
           onClick={this.logout}
           loggedIn={this.props.loggedIn}
           openModal={this.openModal}
-          modalButton = {this.props.loggedIn ? <NavBarModal/> : null}
+          modalButton = {this.props.loggedIn ? <ImageUploadModal/> : null}
           friendSearchButton = {this.props.loggedIn ? <FriendSearchBar/> : null}
           />
 

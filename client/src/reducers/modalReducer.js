@@ -1,5 +1,6 @@
 const initialState = {
   modalIsOpen: false,
+  friendModalOpen: false,
   src:"",
   uploading: false,
   uploaded: false,
@@ -17,6 +18,16 @@ export function modal(state = initialState, action) {
       return{
         ...state,
         modalIsOpen: false
+      };
+    case "FRIEND_SEARCH_RESULT_MODAL_OPEN":
+      return{
+        ...state,
+        friendModalOpen: true
+      };
+    case "FRIEND_SEARCH_RESULT_MODAL_CLOSE":
+      return{
+        ...state,
+        friendModalOpen: false
       };
     case "MODAL_FORM_UPDATE_VALUE_FULFILLED":
     return {

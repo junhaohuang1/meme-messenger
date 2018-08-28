@@ -13,6 +13,21 @@ const closeModal = () => (dispatch) => (
   })
 )
 
+const openFriendSearchResultModal = () => (dispatch) => (
+  dispatch({
+      type: "FRIEND_SEARCH_RESULT_MODAL_OPEN",
+  })
+)
+
+
+const closeFriendSearchResultModal = () => (dispatch) => (
+  dispatch({
+      type: "FRIEND_SEARCH_RESULT_MODAL_CLOSE",
+  })
+)
+
+
+
 const updateModalInput = (key, value) => (dispatch) => (
   dispatch({
       type: "MODAL_FORM_UPDATE_VALUE_FULFILLED",
@@ -33,6 +48,8 @@ const uploadImageLink = (URL) => (dispatch) => (
 
 export const modalActions = {
   closeModal,
+  openFriendSearchResultModal,
+  closeFriendSearchResultModal,
   openModal,
   updateModalInput,
   uploadImageLink

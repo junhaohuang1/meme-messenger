@@ -37,11 +37,9 @@ const searchFriend = (email, token) => (dispatch) => (
   dispatch({
     type: "FRIEND_SEARCH",
     payload: axios.get('/api/findfriend', {
-      body:{
-        email: email
-      },
       headers:{
-        authorization:token
+        authorization:token,
+        email: email
       }
     })
   })
