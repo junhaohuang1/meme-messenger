@@ -51,9 +51,9 @@ app.use(passport.session());
 
 // pass the authenticaion checker middleware
 const authCheckMiddleware = (req, res, next) => {
-  // console.log(req.headers.authorization);
+  console.log(req);
   if (!req.headers.authorization) {
-    console.log('header authorization error');
+    console.log('no header authorization');
     return res.status(401).end();
   }
 
@@ -61,14 +61,7 @@ const authCheckMiddleware = (req, res, next) => {
   // const token = req.headers.authorization.split(' ')[1];
   // decode the token using a secret key-phrase
   // const token = req.headers.authorization.split('"')[9];
-  var token = "";
-  if(req.headers.authorization.split('"')[9]){
-    console.log('can be split!')
-    token = req.headers.authorization.split('"')[9]
-    // console.log(token);
-  } else {
-    token = req.headers.authorization;
-  }
+  token = req.headers.authorization;
   console.log(token);
   return jwt.verify(token, jwtSecret, (err, decoded) => {
     // the 401 code is for unauthorized status

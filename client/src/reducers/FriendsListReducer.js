@@ -6,7 +6,11 @@ const initialState = {
   userSearchedId:"",
   userSearchedName:"",
   userSearchedEmail:"",
-  errors:""
+  errors:"",
+  searchingSuccess:false,
+  addingFriend:false,
+  friendAdded:false,
+  addFriendFail:false,
 }
 
 export function friendslist(state = initialState, action) {
@@ -26,7 +30,7 @@ export function friendslist(state = initialState, action) {
         ...state,
         searching: false,
         searched: true,
-        successMessage: action.payload.data.success,
+        searchingSuccess: action.payload.data.success,
         errors:{},
         userSearchedId:action.payload.data.userId,
         userSearchedName:action.payload.data.name,
@@ -39,9 +43,27 @@ export function friendslist(state = initialState, action) {
         ...state,
         searching: false,
         searched: false,
-        errors: action.payload.response.data.errors,
+        errors: action.payload.response.data.message,
         successMessage:"",
         email:""
+      };
+    case "ADD_FRIEND_PENDING":
+      return {
+        ...state,
+        addingFriend: true
+      };
+    case "ADD_FRIEND_FULFILLED":
+      return {
+        ...state,
+        addingFriend: false,
+        friendAdded:true,
+      };
+    case "ADD_FRIEND_REJECTED":
+      return {
+        ...state,
+        addingFriend: false,
+        friendAdded:false,
+        addFriendFail:true
       };
     default:
       return state

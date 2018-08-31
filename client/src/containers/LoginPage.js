@@ -18,6 +18,7 @@ class LoginPage extends React.Component {
 
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
+
   }
 
   /**
@@ -47,6 +48,8 @@ class LoginPage extends React.Component {
     const value = event.target.value;
     this.props.updateSignInForm(name,value);
   }
+
+
 
   /**
    * Render the component.

@@ -11,6 +11,19 @@ router.get('/dashboard', (req, res) => {
   });
 });
 
+router.post('/addfriend', (req, res, next) =>{
+  console.log('adding friend');
+  // need to add a check for if friends already
+  db.friendlist.create({
+    userOneID: req.header.userOneID,
+    userTwoID: req.header.userTwoID
+  }).then(function(newFriendRelation, created){
+    console.log('friend added');
+    res.status(200);
+    res.end();
+  })
+})
+
 
 
 router.get('/findfriend', (req, res, next) => {
@@ -36,7 +49,9 @@ router.get('/findfriend', (req, res, next) => {
         //     message:"user not found"
         //   }
         // });
-        const errors = 'User not found';
+        const errors = {
+          message:"User not found"
+        }
         res.status(400);
         res.send(errors);
         // res.status(400).redirect(url.format({

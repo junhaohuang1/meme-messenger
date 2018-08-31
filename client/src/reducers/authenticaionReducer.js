@@ -9,7 +9,7 @@ const initialState = user ? ({
   successMessage:"",
   email: '',
   password: '',
-  token:localStorage.getItem('user')
+  token: user.token
   }) :
 ({
   loggedIn: false,
@@ -18,7 +18,8 @@ const initialState = user ? ({
   successMessage:"",
   email: '',
   password: '',
-  token: ''
+  token: '',
+  id:''
 });
 
 export function authentication(state = initialState, action) {

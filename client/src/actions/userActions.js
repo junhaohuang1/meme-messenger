@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Auth from '../Auth.js'
 
+
 const updateSignUpForm = (key, value) => (dispatch) => (
   dispatch({
       type: "SIGNUP_FORM_UPDATE_VALUE_FULFILLED",
@@ -45,6 +46,18 @@ const searchFriend = (email, token) => (dispatch) => (
   })
 );
 
+const addFriend = (userOneID, userTwoID, token) => (dispatch) => (
+  dispatch({
+    type: "FRIEND_SEARCH",
+    payload: axios.post('/api/addfriend', {
+      firstID: userOneID,
+      secondID: userTwoID,
+      headers: {
+        authorization:token
+      }
+    })
+  })
+);
 
 
 function logout() {
@@ -72,5 +85,6 @@ export const userActions = {
     searchFriend,
     updateSignInForm,
     updateSignUpForm,
-    updateFriendQuery
+    updateFriendQuery,
+    addFriend
 };
